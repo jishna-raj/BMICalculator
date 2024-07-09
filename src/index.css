@@ -1,0 +1,119 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Arvo", serif;
+}
+:root{
+    --underweight:orange;
+    --normal:green;
+    --overweight:lightcoral;
+    --obese:crimson;
+}
+body {
+    background-color: #F5F5F5;
+    
+  }
+  
+  .container {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    color: #1A237E;
+    margin-top: 20px;
+  }
+  
+ 
+  .form-control {
+    border: 2px solid #1A237E;
+  }
+  
+  .btn-primary {
+    background-color: #1A237E;
+    border-color: #1A237E;
+    border: 2px solid
+  }
+  .btn-primary:hover {
+    border-color: #1A237E;
+    background-color:transparent;
+    color:  #1A237E;
+  }
+  .btn-secondary {
+    background-color: #e94fb6;
+    border-color: #e94fb6;
+    border: 2px solid
+  }
+  .btn-secondary:hover {
+    border-color: #e94fb6;
+    background-color:transparent;
+    color: #e94fb6;
+  }
+ #button{
+    margin-top: 15px;
+    background-color: #0d0d0e;
+    border-color: #19191a;
+    color: white;
+ }
+ #button:hover {
+    background-color: transparent; 
+    border-color: #1A237E11; 
+    color: black;
+    border: 2px solid;
+  }
+
+#button1 {
+  margin-top: 15px;
+  background-color: #757575;
+  border-color: #757575;
+  color: white;
+  
+}
+#button1:hover {
+    background-color: transparent; 
+    border-color: #616161; 
+    color: black;
+    border: 2px solid;
+}
+.output {
+    text-align: center;
+    margin-top: 20px;
+}
+#BMI{
+    color: white;
+    font-size: 40px;
+}
+#des{
+    color: white;
+    text-transform: uppercase;
+}
+.scale{
+    display: flex;
+}
+.scale div{
+   flex: 1;
+  margin-top: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    border-top: 5px solid var(--color);
+}
+.scale h4{
+    font-size: 0.75rem;
+    color: rgb(211, 216, 221); 
+    font-weight: bolder;
+}
+.scale {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: around;
+}
+
+.scale-item {
+  flex: 1 0 20%; /* Adjust the width as needed */
+  margin: 10px; /* Adjust spacing between items */
+}
