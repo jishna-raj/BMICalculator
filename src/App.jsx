@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactSpeedometer from 'react-d3-speedometer';
+import './App.css'
 
 const BMICalculator = () => {
   const [age, setAge] = useState('');
@@ -7,6 +9,8 @@ const BMICalculator = () => {
   const [bmi, setBmi] = useState(0);
   const [bmiDescription, setBmiDescription] = useState('N/A');
   const [bmiColor, setBmiColor] = useState('white'); // Default color
+  const [image,setImage] = useState('./images/bmi.png');
+  const[border,setBorder] = useState('')
 
   const calculateBMI = () => {
     // Validate inputs
@@ -22,24 +26,38 @@ const BMICalculator = () => {
     // Determine BMI description and color
     let bmiDescription = '';
     let bmiColor = '';
+    let image = ''
+    let border = ""
 
     if (bmiValue < 18.5) {
       bmiDescription = 'Underweight: Being underweight indicates that your BMI is below the normal weight range for your height.';
       bmiColor = 'var(--underweight)';
+      image= "./images/bmi.gif";
+      border = 'var(--underweight)'
     } else if (bmiValue >= 18.5 && bmiValue <= 25) {
       bmiDescription = 'Normal: Falling within the normal BMI range indicates that your body weight is considered healthy.';
       bmiColor = 'var(--normal)';
+      image= "./images/bmi.gif";
+      border = 'var(--normal)';
+
     } else if (bmiValue > 25 && bmiValue <= 30) {
       bmiDescription = 'Overweight: Being classified as overweight means that your body weight is higher than what is generally considered healthy.';
       bmiColor = 'var(--overweight)';
+      image= "./images/bmi.gif";
+      border = 'var(--overweight)';
+
     } else {
       bmiDescription = 'Obese: Being classified as obese indicates a significant excess of body weight relative to height.';
       bmiColor = 'var(--obese)';
+      image= "./images/bmi.gif";
+      border = 'var(--obese)';
     }
 
     // Update state with calculated values
     setBmiDescription(bmiDescription);
     setBmiColor(bmiColor);
+    setImage(image);
+    setBorder(border);
   };
 
   const handleReset = () => {
@@ -50,6 +68,8 @@ const BMICalculator = () => {
     setBmi(0);
     setBmiDescription('N/A');
     setBmiColor('white'); // Reset color to default
+    setImage('./images/bmi.png')
+    setBorder('')
   };
 
   const calculate = (value, name) => {
@@ -69,7 +89,7 @@ const BMICalculator = () => {
           <div className='row bg-dark p-4 rounded'>
             <div className='col-md-6 d-flex flex-column justify-content-center align-items-center'>
               <img
-                src='https://www.hdfcergo.com/images/default-source/health-insurance/online-bmi-calculator-a-necessary-tool-for-health.svg'
+                src='./images/normal.png'
                 alt='BMI Image'
                 className='img-fluid mb-4'
                 style={{ maxWidth: '100%', height: 'auto' }}
@@ -79,6 +99,7 @@ const BMICalculator = () => {
                 <p id='BMI' style={{ color: bmiColor }}>
                   {bmi}
                 </p>
+                <img src={image} alt='' height={'100'} width={'150px'}/>
                 <p id='des' style={{ color: bmiColor }} >
                   {bmiDescription}
                 </p>
@@ -89,13 +110,29 @@ const BMICalculator = () => {
               <form className='container'>
                 <h1 className='text-center'>BMI Calculator</h1>
                 <p className='text-primary'>Calculate your Body Mass Index (BMI) here....</p>
-                <div className='mb-3 text-center'>
-                  <button type='button' className='btn btn-primary me-2'>
-                    Male
-                  </button>
-                  <button type='button' className='btn btn-secondary'>
-                    Female
-                  </button>
+
+                <div className='d-flex justify-content-center'>
+                  <ReactSpeedometer
+                    width={300}
+                    needleHeightRatio={0.6}
+                    value={bmi}
+                    segments={4}
+                    customSegmentStops={[0, 18.5, 25, 30, 58]}
+                    minValue={0}
+                    maxValue={58}
+                    currentValueText='BMI'
+                    customSegmentLabels={[
+                      { text: 'Underweight', position: 'INSIDE', color: '#555', fontSize: '10px' },
+                      { text: 'Normal', position: 'INSIDE', color: '#555', fontSize: '10px' },
+                      { text: 'Over', position: 'INSIDE', color: '#555', fontSize: '10px' },
+                      { text: 'Obese', position: 'INSIDE', color: '#555', fontSize: '14px' },
+                    ]}
+                    ringWidth={30}
+                    needleTransitionDuration={2000}
+                    needleTransition='easeElastic'
+                    needleColor={'#90f2ff'}
+                    textColor={'#333'}
+                  />
                 </div>
 
                 <div className='mb-3'>
@@ -104,7 +141,7 @@ const BMICalculator = () => {
                     type='number' // Changed input type to number for age
                     onChange={(e) => setAge(e.target.value)}
                     placeholder='Age'
-                    className='form-control'
+                    className='form-control' style={{borderColor:border,borderWidth:"2px"}}
                     name='age'
                     value={age}
                   />
@@ -116,7 +153,7 @@ const BMICalculator = () => {
                     type='number' // Changed input type to number for height
                     onChange={(e) => setHeight(e.target.value)}
                     placeholder='Height'
-                    className='form-control'
+                    className='form-control' style={{borderColor:border,borderWidth:"2px"}}
                     name='height'
                     value={height}
                   />
@@ -128,7 +165,7 @@ const BMICalculator = () => {
                     type='number' // Changed input type to number for weight
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder='Weight'
-                    className='form-control'
+                    className='form-control' style={{borderColor:border,borderWidth:"2px"}}
                     name='weight'
                     value={weight}
                   />

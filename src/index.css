@@ -29,9 +29,9 @@ body {
   }
   
  
-  .form-control {
+ /*  .form-control {
     border: 2px solid #1A237E;
-  }
+  } */
   
   .btn-primary {
     background-color: #1A237E;
@@ -86,10 +86,13 @@ body {
 #BMI{
     color: white;
     font-size: 40px;
+    font-family: "Oswald", sans-serif;
 }
 #des{
     color: white;
     text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+    margin-top: 20px;
 }
 .scale{
     display: flex;
