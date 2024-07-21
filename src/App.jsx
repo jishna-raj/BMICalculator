@@ -89,14 +89,14 @@ const BMICalculator = () => {
           <div className='row bg-dark p-4 rounded'>
             <div className='col-md-6 d-flex flex-column justify-content-center align-items-center'>
               <img
-                src='./images/normal.png'
+                src='https://www.hdfcergo.com/images/default-source/health-insurance/online-bmi-calculator-a-necessary-tool-for-health.svg'
                 alt='BMI Image'
                 className='img-fluid mb-4'
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
               <div className='output text-center'>
                 <h3 className='text-light'>Your BMI is</h3>
-                <p id='BMI' style={{ color: bmiColor }}>
+                <p id='BMI' style={{ color: bmiColor,fontSize:'50px' }}>
                   {bmi}
                 </p>
                 <img src={image} alt='' height={'100'} width={'150px'}/>
